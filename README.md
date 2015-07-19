@@ -8,6 +8,7 @@ Interactive pyspark shell on Comet
 * Configure the environment with:
 
         source slurm-env.sh
+        module load spark
         source ~/mycluster.conf/spark/spark-env.sh
         
 * Start the interactive console with `pyspark`
