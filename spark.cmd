@@ -1,8 +1,7 @@
 #!/bin/bash
 ################################################################################
-#  A simple Scala based example for Spark
 #  Designed to run on SDSC's Comet resource.
-#  Mahidhar Tatineni, San Diego Supercomputer Center   June 2015
+#  Mahidhar Tatineni, Andrea Zonca, San Diego Supercomputer Center Aug 2015
 ################################################################################
 #SBATCH --job-name="spark-demo"
 #SBATCH --output="spark-demo.%j.%N.out"
@@ -10,7 +9,7 @@
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=24
 #SBATCH --export=ALL
-#SBATCH -t 01:00:00
+#SBATCH -t 04:00:00
 
 ### Environment setup for Hadoop and Spark
 export MODULEPATH=$MODULEPATH:/share/apps/compute/modulefiles/applications
@@ -34,14 +33,8 @@ myspark start
 
 python save_slurm_env.py
 
-sleep 60m
+sleep 4h
 
-### Copy the data into HDFS
-# hdfs dfs -mkdir -p /user/$USER
-# hdfs dfs -put $WORKDIR/facebook_combined.txt /user/$USER/
-# 
-# run-example org.apache.spark.examples.graphx.LiveJournalPageRank facebook_combined.txt --numEPart=8
-# 
 # ### Shut down Spark and HDFS
 # myspark stop
 # stop-dfs.sh
