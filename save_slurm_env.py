@@ -5,3 +5,4 @@ with open("slurm-env.sh", "w") as f:
         if k.startswith("SLURM"):
             f.write('export {}="{}"\n'.format(k,v))
     f.write("export PYSPARK_DRIVER_PYTHON=ipython\n")
+    f.write("source ~/mycluster.conf/spark/spark-env.sh\n")
