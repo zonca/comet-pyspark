@@ -4,16 +4,17 @@
 #  Designed to run on SDSC's Comet resource.
 #  Mahidhar Tatineni, San Diego Supercomputer Center   June 2015
 ################################################################################
-#SBATCH --job-name="graphx-demo"
-#SBATCH --output="graphx-demo.%j.%N.out"
+#SBATCH --job-name="spark-demo"
+#SBATCH --output="spark-demo.%j.%N.out"
 #SBATCH --partition=compute
-#SBATCH --nodes=4
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=24
 #SBATCH --export=ALL
-#SBATCH -t 00:30:00
+#SBATCH -t 01:00:00
 
 ### Environment setup for Hadoop and Spark
-module load spark
+export MODULEPATH=$MODULEPATH:/share/apps/compute/modulefiles/applications
+module load spark/1.4.1
 export PATH=/opt/hadoop/2.6.0/sbin:$PATH
 export HADOOP_CONF_DIR=$HOME/mycluster.conf
 export WORKDIR=`pwd`
@@ -33,7 +34,7 @@ myspark start
 
 python save_slurm_env.py
 
-sleep 30m
+sleep 60m
 
 ### Copy the data into HDFS
 # hdfs dfs -mkdir -p /user/$USER
